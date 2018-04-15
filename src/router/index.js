@@ -7,8 +7,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Hello',
-      component: resolve => require(['@/components/Hello.vue'], resolve)
+      name: 'homepage',
+      component: resolve => require(['@/components/homepage.vue'], resolve)
     },
     {
       path: '/search/:routertext',
