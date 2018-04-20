@@ -1,14 +1,14 @@
 <template>
   <div class="From_con">
-    <h1>您要搜索的内容是："{{routertext}}"</h1>
+    <h1>您要搜索的内容是："{{sid}}"</h1>
     <div>
       <ve-line :data="chartData"
-                :color="chartColors"
-                :width="width"
-                :height="height"
-                :grid="grid"
-                :scale="scale"
-                :settings="chartSettings">
+               :color="chartColors"
+               :width="width"
+               :height="height"
+               :grid="grid"
+               :scale="scale"
+               :settings="chartSettings">
       </ve-line>
     </div>
   </div>
@@ -20,7 +20,7 @@ export default {
   name: 'search',
   data () {
     return {
-      routertext: this.$route.params.routertext
+      sid: this.$route.params.sid
     }
   },
   created: function () {
@@ -59,5 +59,4 @@ export default {
 </script>
 
 <style lang="css" scoped>
-
 </style>
