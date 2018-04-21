@@ -1,14 +1,25 @@
 <template>
   <div class="From_con">
-    <h1>您要搜索的内容是："{{sid}}"</h1>
     <div>
-      <ve-line :data="chartData"
-               :color="chartColors"
-               :width="width"
-               :height="height"
-               :grid="grid"
-               :scale="scale"
-               :settings="chartSettings">
+      <el-select v-model="value1">
+        <el-option
+          v-for="item in option1"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value">
+        </el-option>
+      </el-select>
+      <el-select v-model="value2">
+        <el-option
+          v-for="item in option2"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value">
+        </el-option>
+      </el-select>
+      <ve-line
+        :data="chartData"
+        :toolbox="toolbox">
       </ve-line>
     </div>
   </div>
@@ -16,42 +27,70 @@
 
 <script>
 import VeLine from 'v-charts/lib/line'
+import 'echarts/lib/component/toolbox'
+import 'v-charts/lib/bar'
+import axios from 'axios'
 export default {
   name: 'search',
   data () {
     return {
-      sid: this.$route.params.sid
+      sid: this.$route.params.sid,
+      option1: [{
+        value: 'heartRate',
+        label: '心率'
+      }, {
+        value: 'step',
+        label: '步数'
+      }, {
+        value: 'weight',
+        label: '体重'
+      }, {
+        value: 'height',
+        label: '身高'
+      }],
+      option2: [{
+        value: 'day',
+        label: '天'
+      }, {
+        value: 'week',
+        label: '周'
+      }, {
+        value: 'month',
+        label: '月'
+      }, {
+        value: 'year',
+        label: '年'
+      }],
+      value1: 'heartRate',
+      value2: 'day'
     }
   },
   created: function () {
+    var vm = this
+    axios.get('https://yesno.wtf/api',
+      {params: {'sid': vm.sid, 'dataType': vm.value1, 'dataSeg': vm.value2}})
+      .then(function (response) {
+
+      })
+      .catch(function (error) {
+        console.log('错误！API 无法处理。' + error)
+      })
     this.chartData = {
-      columns: ['日期', '销售额', '占比'],
+      columns: ['日期', '销售额-1季度'],
       rows: [
-        { '日期': '1月1日', '销售额': 1523, '占比': 0.12 },
-        { '日期': '1月2日', '销售额': 1223, '占比': 0.345 },
-        { '日期': '1月3日', '销售额': 2123, '占比': 0.7 },
-        { '日期': '1月4日', '销售额': 4123, '占比': 0.31 },
-        { '日期': '1月5日', '销售额': 3123, '占比': 0.12 },
-        { '日期': '1月6日', '销售额': 7123, '占比': 0.65 }
+        { '日期': '1月1日', '销售额-1季度': 1523 },
+        { '日期': '1月2日', '销售额-1季度': 1223 },
+        { '日期': '1月3日', '销售额-1季度': 2123 },
+        { '日期': '1月4日', '销售额-1季度': 4123 },
+        { '日期': '1月5日', '销售额-1季度': 3123 },
+        { '日期': '1月6日', '销售额-1季度': 7123 }
       ]
     }
-    this.chartColors = [
-      '#19d4ae', '#5ab1ef', '#fa6e86',
-      '#ffb980', '#0067a6', '#c4b4e4',
-      '#d87a80', '#9cbbff', '#d9d0c7',
-      '#87a997', '#d49ea2', '#5b4947',
-      '#7ba3a8'
-    ]
-    this.grid = { left: 20, right: 20 }
-    this.scale = { y: true }
-    this.width = '80%'
-    this.height = '350px'
-    this.chartSettings = {
-      axisSite: {
-        right: ['占比']
-      },
-      yAxisType: ['KMB', 'percent'],
-      area: true
+    this.toolbox = {
+      feature: {
+        magicType: {type: ['line', 'bar']},
+        saveAsImage: {}
+      }
     }
   },
   components: { VeLine }
