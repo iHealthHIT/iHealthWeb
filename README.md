@@ -2,15 +2,30 @@
 
 > A Vue.js project
 
-## Build Setup
+##简介
+iWatch嵌入式开发，iHealth健康管理系统前端部分
 
+##技术栈
+vue + vue-router + v-chart + elementUI + axios
+
+## Build Setup
+####npm安装  
+使用淘宝npm镜像  
+```bash
+# use npm mirrors from taobao
+npm config set registry http://registry.npm.taobao.org/
+```
+安装依赖
 ``` bash
 # install dependencies
 npm install
-
+```
+运行服务器
+```bash
 # serve with hot reload at localhost:8080
 npm run dev
-
+```
+```bash
 # build for production with minification
 npm run build
 
