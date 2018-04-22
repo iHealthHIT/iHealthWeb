@@ -6,13 +6,27 @@ Vue.use(Router)
 var routes = [
   {
     path: '/',
-    name: 'homepage',
-    component: resolve => require(['@/components/homepage.vue'], resolve)
+    redirect: '/verify'
   },
   {
-    path: '/search/:sid',
-    name: 'verify',
-    component: resolve => require(['@/components/search.vue'], resolve)
+    path: '*',
+    redirect: '/404'
+  },
+  {
+    path: '/verify',
+    name: 'homepage',
+    component: resolve => require(['@/components/form.vue'], resolve)
+  },
+  {
+    path: '/homepage/:sid',
+    component: resolve => require(['@/components/homepage.vue'], resolve),
+    children: [
+      {
+        path: 'chart',
+        name: 'home',
+        component: resolve => require(['@/components/chart.vue'], resolve)
+      }
+    ]
   },
   {
     path: '/404',

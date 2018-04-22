@@ -1,23 +1,19 @@
 <template>
   <el-container id="main-menu" class="wrapper">
     <el-header class="header">
-      <vheader/>
+      <Header/>
     </el-header>
-      <el-main>
-        <vform/>
-      </el-main>
+    <el-main>
+      <router-view/>
+    </el-main>
   </el-container>
 </template>
 
 <script>
 import Header from '@/components/Header'
-import Vform from '@/components/form'
 export default {
   name: 'homepage',
-  components: {
-    'vheader': Header,
-    'vform': Vform
-  }
+  components: { Header }
 }
 </script>
 
