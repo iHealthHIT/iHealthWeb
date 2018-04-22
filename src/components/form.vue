@@ -25,7 +25,7 @@
         </el-form-item>
       </div>
       <el-alert title="查询失败" type="error"
-        description="未查询到相关用户，请仔细检查设备号和姓名，重新输入"
+        description="未查询到相关用户，请仔细检查输入"
         show-icon v-show="form.isShow">
       </el-alert>
     </el-form>
@@ -51,10 +51,10 @@ export default {
       this.$refs.form.validate((valid) => {
         if (valid) {
           var vm = this
-          axios.get('https://localhost:3000/websignup',
-            {params: {'sid': vm.sid, 'name': vm.name}})
+          axios.get('http//localhost/websignup',
+            {params: {sid: form.sid, name: form.name}})
             .then(function (response) {
-              if (response.data.exits === 'true') {
+              if (response.data.exits === true) {
                 router.push({name: 'home', params: {sid: vm.form.sid}})
               } else {
                 vm.form.isShow = true
@@ -87,7 +87,7 @@ export default {
     padding-bottom: 10px;
     padding-right: 40px;
     position: fixed;
-    left: 45%;
+    left: 48%;
     top: 40%;
     transform: translate(-50%, -50%);
   }

@@ -23,7 +23,6 @@
           </el-select>
         </el-col>
       </el-row>
-    </div>
       <el-row  type="flex" justify="center">
         <el-col :xs="24" :md="20" :lg="16">
           <ve-line class="chart"
@@ -32,6 +31,7 @@
           </ve-line>
         </el-col>
       </el-row>
+    </div>
   </div>
 </template>
 
@@ -79,7 +79,7 @@ export default {
   created: function () {
     var vm = this
     axios.get('https://yesno.wtf/api',
-      {params: {'sid': vm.sid, 'dataType': vm.value1, 'dataSeg': vm.value2}})
+      {params: {sid: vm.sid, dataType: vm.value1, dataSeg: vm.value2}})
       .then(function (response) {
         vm.chartData = {
           columns: ['時間', '心率'],
@@ -108,7 +108,7 @@ export default {
     changeType () {
       var vm = this
       axios.get('https://yesno.wtf/api',
-        {params: {'sid': vm.sid, 'dataType': vm.value1, 'dataSeg': vm.value2}})
+        {params: {sid: vm.sid, dataType: vm.value1, dataSeg: vm.value2}})
         .then(function (response) {
           vm.chartData = {
             columns: ['時間', '步数'],
