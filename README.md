@@ -2,14 +2,14 @@
 
 > A Vue.js project
 
-##简介
+## 简介
 iWatch嵌入式开发，iHealth健康管理系统前端部分
 
-##技术栈
+## 技术栈
 vue + vue-router + v-chart + elementUI + axios
 
 ## Build Setup
-####npm安装  
+#### npm安装  
 使用淘宝npm镜像  
 ```bash
 # use npm mirrors from taobao
